@@ -8,8 +8,8 @@ A small tool which generates a Gradle multi-module project using the Koltin DSL 
 
 ### Versions
 
-- Kotlin: 1.3.72
-- Gradle with wrapper: 6.3
+- Kotlin: 1.3.72 (Update in: `./files/buildSrc/Build.kt`)
+- Gradle with wrapper: 6.3 (Update in: `./files/root/gradle/wrapper/gradle-wrapper.properties`)
 
 ### Usage
 
@@ -39,7 +39,23 @@ The structure in the project directory will look like:
 │       └── gradle-wrapper.properties
 ├── gradlew
 ├── gradlew.bat
+├── new-module.sh
 └── settings.gradle.kts
 ```
 
 In this directory run `./gradlew build`.
+
+To create a new module run `./new-module.sh <module-name>`. It will create a new Gradle module with `build` and `settings` file. Also the `settings.gradle.kts` file will be updated to include the new module.
+
+Run `./gradlew projects` to verify it worked.
+
+```
+> Task :projects
+
+------------------------------------------------------------
+Root project
+------------------------------------------------------------
+
+Root project 'my-project'
+\--- Project ':<module-name>'
+```

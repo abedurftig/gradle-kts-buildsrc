@@ -1,38 +1,39 @@
 #!/bin/bash
-
-dir="$1"
  
 [ $# -eq 0 ] && { echo "Usage: $0 dir-name"; exit 1; }
 
+TARGET_DIR="$1"
+
 # Test and maybe create target directory 
-if [ -d "$dir" ]
+if [ -d "$TARGET_DIR" ]
 then
-   if [ "$(ls -A $dir)" ]
+   if [ "$(ls -A $TARGET_DIR)" ]
    then
-    echo "$dir is not empty."
+    echo "$TARGET_DIR is not empty."
     exit 1
    fi
-   echo "$dir exists and is empty. Will setup within."
+   echo "$TARGET_DIR exists and is empty. Will setup within."
 else
-  echo "Will create $dir."
-  mkdir $dir
+  echo "Will create $TARGET_DIR."
+  mkdir $TARGET_DIR
 fi
 
 # Determine project name
-PROJECT_NAME=${dir##*/}
+PROJECT_NAME=${TARGET_DIR##*/}
 echo "Project name: $PROJECT_NAME"
 
 # Create project structure
-mkdir -p $dir/buildSrc/src/main/kotlin
-cp ./files/buildSrc/Build.kt $dir/buildSrc/src/main/kotlin/
-cp ./files/buildSrc/build.gradle.kts $dir/buildSrc/
+mkdir -p $TARGET_DIR/buildSrc/src/main/kotlin
+cp ./files/buildSrc/Build.kt $TARGET_DIR/buildSrc/src/main/kotlin/
+cp ./files/buildSrc/build.gradle.kts $TARGET_DIR/buildSrc/
 
-cp ./files/root/settings.gradle.kts $dir/
-sed -i "" "s/replace-me/$PROJECT_NAME/g" "$dir"/settings.gradle.kts
-cp ./files/root/build.gradle.kts $dir/
-sed -i "" "s/replace-me/$PROJECT_NAME/g" "$dir"/build.gradle.kts
+cp ./files/root/settings.gradle.kts $TARGET_DIR/
+sed -i "" "s/replace-me/$PROJECT_NAME/g" "$TARGET_DIR"/settings.gradle.kts
+cp ./files/root/build.gradle.kts $TARGET_DIR/
+sed -i "" "s/replace-me/$PROJECT_NAME/g" "$TARGET_DIR"/build.gradle.kts
 
-cp -r ./files/root/gradle "$dir"
-cp ./files/root/gradlew* "$dir"
+cp -r ./files/root/gradle "$TARGET_DIR"
+cp ./files/root/gradlew* "$TARGET_DIR"
+cp ./files/root/new-module.sh "$TARGET_DIR"
 
-echo "Go to $dir and run './gradlew build'"
+echo "Go to $TARGET_DIR and run './gradlew build'"
