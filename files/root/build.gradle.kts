@@ -40,9 +40,21 @@ subprojects {
 
     dependencies {
 
+        kapt(platform("io.micronaut:micronaut-bom:$micronautVersion"))
+        kapt("io.micronaut:micronaut-inject-java")
+        kapt("io.micronaut:micronaut-validation")
+
         implementation(platform("org.jetbrains.kotlin:kotlin-bom:$kotlinVersion"))
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+        implementation(platform("io.micronaut:micronaut-bom:$micronautVersion"))
+        implementation("io.micronaut:micronaut-runtime")
+        implementation("io.micronaut:micronaut-http-server-netty")
+        implementation("io.micronaut:micronaut-http-client")
+
+        kaptTest(platform("io.micronaut:micronaut-bom:$micronautVersion"))
+        kaptTest("io.micronaut:micronaut-inject-java")
 
         testImplementation("org.jetbrains.kotlin:kotlin-test")
         testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
@@ -51,6 +63,7 @@ subprojects {
         testImplementation("org.assertj:assertj-core:3.12.2")
         testImplementation("org.mockito:mockito-core:2.28.2")
         testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0")
+        testImplementation("io.micronaut.test:micronaut-test-junit5")
 
         testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jupiterVersion")
     }

@@ -16,6 +16,7 @@ You can check out the `micronaut` branch to create a running Micronaut applicati
 
 - Kotlin: 1.3.72 (Update in: `./files/buildSrc/Build.kt`)
 - Gradle with wrapper: 6.3 (Update in: `./files/root/gradle/wrapper/gradle-wrapper.properties`)
+- Micronaut: 1.3.4 (Update in: `./files/buildSrc/Build.kt`)
 
 ### Usage
 
