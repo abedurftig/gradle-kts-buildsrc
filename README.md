@@ -1,8 +1,8 @@
-# Gradle Kotlin DSL Multi-Build with buildSrc
+# Gradle Kotlin DSL Multi-Module project with buildSrc
 
 ### Intro
 
-A small tool to generates a Gradle multi-module build using the Koltin DSL and the `buildSrc` project.
+A small tool which generates a Gradle multi-module project using the Koltin DSL and the `buildSrc` project.
 
 > See [the Gradle documentation](https://docs.gradle.org/current/userguide/organizing_gradle_projects.html#sec:build_sources) for more details on the `buildSrc` project.
 
