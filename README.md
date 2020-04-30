@@ -73,7 +73,7 @@ Root project 'my-project'
 
 #### New Application
 
-If the module is named `application`, the new module will be created as a runnable `Micronaut` server application. The server will be started on port 8080 by default.
+To create a new application module run `./new-module.sh <module-name> <root-package> --application`, the new module will be created as a runnable `Micronaut` server application. The server will be started on port 8080 by default.
 
 - `src/main/resources/application.yml` file is created
 - `Application.kt` class is created in the root package

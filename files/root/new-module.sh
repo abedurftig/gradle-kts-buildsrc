@@ -1,9 +1,17 @@
 #!/bin/bash
 
-[ $# -ne 2 ] && { echo "Usage: $0 <module-name> <root-package>"; exit 1; }
+[ $# -lt 2 ] && { echo "Usage: $0 <module-name> <root-package> (--application)"; exit 1; }
 
 MODULE_NAME="$1"
 ROOT_PACKAGE="$2"
+IS_APPLICATION=false
+
+if [ $3 == "--application" ]
+then
+    IS_APPLICATION=true
+fi
+
+echo "Is application: $IS_APPLICATION"
 
 mkdir $MODULE_NAME
 echo "buildscript {
@@ -144,7 +152,7 @@ function create_application () {
     create_application_build
 }
 
-if [ $MODULE_NAME == "application" ]
+if [ $IS_APPLICATION == true ]
 then
     create_application
 fi
