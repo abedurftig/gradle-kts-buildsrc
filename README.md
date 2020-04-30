@@ -73,10 +73,13 @@ Root project 'my-project'
 
 #### New Application
 
-> WIP
-
 If the module is named `application`, the new module will be created as a runnable `Micronaut` server application. The server will be started on port 8080 by default.
 
 - `src/main/resources/application.yml` file is created
 - `Application.kt` class is created in the root package
 - `ApplicationTest.kt` class is created in the root package of the test src
+- `HelloController.kt` class is created in the api package exposing the  `/hello` endpoint
+- `HelloControllerTest.kt` class is created
+- the `application` plugin is applied in the `build.gradle.kts` file
+
+Run `./gradlew run` and access http://localhost:8080/hello.

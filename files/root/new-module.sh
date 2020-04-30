@@ -69,14 +69,79 @@ class ApplicationTest {
 }" > "$MODULE_NAME"/src/test/kotlin/$PACKAGE_DIR/ApplicationTest.kt
 }
 
+function create_controller_class () {
+    echo "package $ROOT_PACKAGE.api
+
+import io.micronaut.http.HttpResponse
+import io.micronaut.http.annotation.Controller
+import io.micronaut.http.annotation.Get
+
+@Controller(\"/hello\")
+class HelloController {
+
+    @Get
+    fun getMessage(): HttpResponse<String> {
+        return HttpResponse.ok(\"Hello World!\")
+    }
+}" > "$MODULE_NAME"/src/main/kotlin/$PACKAGE_DIR/api/HelloController.kt
+}
+
+function create_controller_test () {
+    echo "package $ROOT_PACKAGE.api
+
+import io.micronaut.http.HttpRequest
+import io.micronaut.http.client.RxHttpClient
+import io.micronaut.http.client.annotation.Client
+import io.micronaut.test.annotation.MicronautTest
+import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Test
+import javax.inject.Inject
+
+@MicronautTest
+class HelloControllerTest {
+
+    @Inject
+    @field:Client(\"/hello\")
+    private lateinit var httpClient: RxHttpClient
+
+    @Test
+    fun getMessage() {
+        val request = HttpRequest.GET<String>(\"/\")
+        val body = httpClient.toBlocking().retrieve(request)
+
+        Assertions.assertThat(body).isEqualTo(\"Hello World!\")
+    }
+}" > "$MODULE_NAME"/src/test/kotlin/$PACKAGE_DIR/api/HelloControllerTest.kt
+}
+
+function create_application_build () {
+    echo "buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    application
+}
+
+application {
+    mainClassName = \"$ROOT_PACKAGE.Application\"
+}" > "$MODULE_NAME"/build.gradle.kts
+}
+
 function create_application () {
     echo "Creating application"
-    # create application properties
+
+    mkdir -p ./$MODULE_NAME/src/main/kotlin/$PACKAGE_DIR/api
+    mkdir -p ./$MODULE_NAME/src/test/kotlin/$PACKAGE_DIR/api
+
     create_application_properties
-    # create main class
     create_application_class
-    # create application test
     create_application_test
+    create_controller_class
+    create_controller_test
+    create_application_build
 }
 
 if [ $MODULE_NAME == "application" ]
