@@ -70,3 +70,13 @@ Root project
 Root project 'my-project'
 \--- Project ':<module-name>'
 ```
+
+##### New Application
+
+> WIP
+
+If the module is named `application`, the new module will be created as a runnable `Micronaut` server application. The server will be started on port 8080 by default.
+
+- `src/main/resources/application.yml` file is created
+- `Application.kt` class is created in the root package
+- `ApplicationTest.kt` class is created in the root package of the test src
