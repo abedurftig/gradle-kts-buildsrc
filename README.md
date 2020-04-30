@@ -71,7 +71,7 @@ Root project 'my-project'
 \--- Project ':<module-name>'
 ```
 
-##### New Application
+#### New Application
 
 > WIP
 
