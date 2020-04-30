@@ -8,6 +8,10 @@ A small tool which generates a Gradle multi-module project using the Koltin DSL 
 
 A small script is included in the generated project to quickly create and include new modules.
 
+### Flavours
+
+You can check out the `micronaut` branch to create a running Micronaut application.
+
 ### Versions
 
 - Kotlin: 1.3.72 (Update in: `./files/buildSrc/Build.kt`)
@@ -51,7 +55,7 @@ In this directory run `./gradlew build`.
 
 #### New Module
 
-To create a new module run `./new-module.sh <module-name>`. It will create a new Gradle module with `build` and `settings` file. Also the `settings.gradle.kts` file of the root project will be updated to include the new module.
+To create a new module run `./new-module.sh <module-name> <root-package>`. It will create a new Gradle module with `build` and `settings` file and src/test packages. Also the `settings.gradle.kts` file of the root project will be updated to include the new module.
 
 Run `./gradlew projects` to verify it worked.
 
