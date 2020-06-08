@@ -46,13 +46,13 @@ subprojects {
 
         testImplementation("org.jetbrains.kotlin:kotlin-test")
         testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
-        testImplementation("org.junit.jupiter:junit-jupiter-api")
-        testImplementation("org.junit.jupiter:junit-jupiter-params:5.4.2")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:$jupiterVersion")
+        testImplementation("org.junit.jupiter:junit-jupiter-params:$jupiterVersion")
         testImplementation("org.assertj:assertj-core:3.12.2")
         testImplementation("org.mockito:mockito-core:2.28.2")
         testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0")
 
-        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jupiterVersion")
     }
 
     tasks {
